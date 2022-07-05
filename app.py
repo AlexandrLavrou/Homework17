@@ -110,8 +110,8 @@ class MovieView(Resource):
         except Exception as e:
             return f"{e}", 404
 
-    def patch(self, movie_id: int):
-        movie = db.session.query(Movie).get(movie_id)
+    def patch(self, mid: int):
+        movie = db.session.query(Movie).get(mid)
         if not movie:
             return "Нет такого фильма", 404
 
@@ -134,8 +134,8 @@ class MovieView(Resource):
         db.session.commit()
         return "", 204
 
-    def put(self, movie_id):
-        movie = db.session.query(Movie).get(movie_id)
+    def put(self, mid):
+        movie = db.session.query(Movie).get(mid)
         if not movie:
             return "", 404
         req_json = request.json
@@ -155,6 +155,7 @@ class MovieView(Resource):
         try:
             movie = Movie.query.get(mid)
             db.session.delete(movie)
+            db.session.commit()
             return "", 204
         except Exception as e:
             return f"{e}", 404
