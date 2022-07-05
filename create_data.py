@@ -32,6 +32,7 @@ class Director(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
 
+
 class Genre(db.Model):
     __tablename__ = 'genre'
     id = db.Column(db.Integer, primary_key=True)
@@ -254,7 +255,7 @@ for movie in data["movies"]:
         rating=movie["rating"],
         genre_id=movie["genre_id"],
         director_id=movie["director_id"],
-    )
+    )all_movies
     with db.session.begin():
         db.session.add(m)
 
